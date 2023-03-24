@@ -14,4 +14,6 @@ export DJANGO_SETTINGS_MODULE="local_settings"
 export FUNCTIONAL_TESTS="True"
 export OS_AUTH_URL="https://onboarding-onboarding.cluster.local"
 
+export PYTHONWARNINGS=ignore
+
 coldfront test coldfront_plugin_cloud.tests.functional.openshift
