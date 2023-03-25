@@ -2,7 +2,6 @@ name: test-py39-functional-microshift
 
 on:
   push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
