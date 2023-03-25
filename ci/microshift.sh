@@ -41,7 +41,8 @@ done
 echo "::endgroup::"
 
 # Install OpenShift Account Management
-git clone "${ACCT_MGT_REPOSITORY}" "$test_dir/openshift-acct-mgt"
+git config --global advice.detachedHead false
+git clone ${ACCT_MGT_REPOSITORY} "$test_dir/openshift-acct-mgt"
 git -C "$test_dir/openshift-acct-mgt" checkout "$ACCT_MGT_VERSION"
 
 echo "::group::Build openshift-acct-mgt image"
