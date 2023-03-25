@@ -7,8 +7,6 @@ on:
 
 env:
   KUBECONFIG: ${{ github.workspace }}/kubeconfig
-  ACCT_MGT_VERSION: "acd4f462104de6cb8af46baecff2ed968612742d"
-
 
 jobs:
   build:

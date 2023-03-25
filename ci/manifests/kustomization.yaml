@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: onboarding
+
+resources:
+- https://github.com/CCI-MOC/openshift-acct-mgt//k8s/base
+
+secretGenerator:
+  - name: onboarding-credentials
+    literals:
+      - ACCT_MGT_ADMIN_USERNAME=admin
+      - ACCT_MGT_ADMIN_PASSWORD=pass
+
+configMapGenerator:
+  - name: onboarding-config
+    literals:
+      - ACCT_MGT_IDENTITY_PROVIDER=developer
+
+images:
+  - name: localhost:5000/cci-moc/openshift-acct-mgt
+    newName: ghcr.io/cci-moc/openshift-acct-mgt
+    newTag: master

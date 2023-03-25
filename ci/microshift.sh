@@ -49,19 +49,7 @@ while ! oc get route -A; do
 done
 echo "::endgroup::"
 
-# Install OpenShift Account Management
-git config --global advice.detachedHead false
-git clone ${ACCT_MGT_REPOSITORY} "$test_dir/openshift-acct-mgt"
-git -C "$test_dir/openshift-acct-mgt" checkout "$ACCT_MGT_VERSION"
-
-echo "::group::Building openshift-acct-mgt image"
-sudo docker build "$test_dir/openshift-acct-mgt" -t "127.0.0.1:${registry_port}/cci-moc/openshift-acct-mgt:latest"
-sudo docker push "127.0.0.1:${registry_port}/cci-moc/openshift-acct-mgt:latest"
-echo "::endgroup::"
-
 echo "::group::Deploying openshift-acct-mgt"
-oc apply -k "$test_dir/openshift-acct-mgt/k8s/overlays/crc"
+oc apply -k "ci/manifests"
 oc wait -n onboarding --for=condition=available --timeout=800s deployment/onboarding
 echo "::endgroup::"
-
-sleep 60
